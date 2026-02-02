@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.LoginPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource Primary}">
+
+    <Grid>
+        <!-- Background (keep simple to match original; image removed until asset is provided) -->
+        <BoxView Color="{DynamicResource Primary}" />
+
+        <!-- Main Content -->
+        <Grid RowDefinitions="*,Auto,*" 
+              Padding="20">
+            
+            <!-- Header Section -->
+            <VerticalStackLayout Grid.Row="0" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"
+                                Spacing="10">
+                
+                <Label Text="windata" 
+                       FontSize="40" 
+                       FontFamily="Niamey" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+                
+                <Label Text="EBICS permission pro" 
+                       FontSize="14" 
+                       FontFamily="Niamey" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Login Form Section -->
+            <Frame Grid.Row="1" 
+                   BackgroundColor="Transparent" 
+                   BorderColor="Transparent" 
+                   CornerRadius="10" 
+                   Padding="20">
+                
+                <VerticalStackLayout Spacing="20">
+                    
+                    <!-- Password Entry -->
+                    <Frame Margin="0,5" 
+                           Padding="15" 
+                           BackgroundColor="White" 
+                           CornerRadius="8" 
+                           BorderColor="LightGray">
+                        
+                        <Entry x:Name="PasswordEntry" 
+                               Placeholder="Enter Password" 
+                               IsPassword="True" 
+                               FontSize="16" 
+                               HorizontalOptions="Fill" 
+                               Completed="OnPasswordCompleted" />
+                    </Frame>
+
+                    <!-- Login Button -->
+                    <Button x:Name="LoginButton" 
+                            Text="Login" 
+                            BackgroundColor="{DynamicResource Primary}" 
+                            TextColor="White" 
+                            CornerRadius="8" 
+                            FontSize="16" 
+                            FontAttributes="Bold" 
+                            HeightRequest="50" 
+                            Clicked="OnLoginClicked" />
+
+                    <!-- Biometric Login Button -->
+                    <Button x:Name="BiometricButton" 
+                            Text="Login with Biometrics" 
+                            BackgroundColor="Transparent" 
+                            TextColor="White" 
+                            BorderColor="White" 
+                            CornerRadius="8" 
+                            FontSize="14" 
+                            HeightRequest="40" 
+                            Clicked="OnBiometricLoginClicked" 
+                            IsVisible="True" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Footer Section -->
+            <VerticalStackLayout Grid.Row="2" 
+                                VerticalOptions="End" 
+                                HorizontalOptions="Center"
+                                Spacing="5">
+                
+                <Label Text="Secure EBICS Banking" 
+                       FontSize="12" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" />
+                
+                <Label Text="Version 1.0" 
+                       FontSize="10" 
+                       TextColor="LightGray" 
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Loading Overlay -->
+        <Grid x:Name="LoadingOverlay" 
+              BackgroundColor="#80000000" 
+              IsVisible="False">
+            
+            <ActivityIndicator IsRunning="True" 
+                              Color="White" 
+                              HorizontalOptions="Center" 
+                              VerticalOptions="Center" />
+            
+            <Label x:Name="LoadingText" 
+                   Text="Authenticating..." 
+                   TextColor="White" 
+                   FontSize="16" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center" 
+                   TranslationY="40" />
+        </Grid>
+    </Grid>
+</ContentPage> 

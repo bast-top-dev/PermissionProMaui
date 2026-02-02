@@ -1,0 +1,93 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<!-- Focus on Android and Windows for now -->
+		<TargetFrameworks>net8.0-android;net8.0-windows10.0.19041.0</TargetFrameworks>
+		<RootNamespace>PermissionProMaui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+		<Nullable>disable</Nullable>
+		<!-- Display name -->
+		<ApplicationTitle>PermissionProMaui</ApplicationTitle>
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.permissionpromaui</ApplicationId>
+		<ApplicationIdGuid>96C132E9-B871-4A3E-8C97-DB1F90726F6F</ApplicationIdGuid>
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">
+		<OutputType>WinExe</OutputType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
+		<OutputType>Exe</OutputType>
+		<!-- Ensure VS uses the correct MAUI manifest location on all machines -->
+		<AndroidManifest>Platforms\Android\AndroidManifest.xml</AndroidManifest>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+	  <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+	  <AndroidFastDeploymentType>Assemblies:Dexes</AndroidFastDeploymentType>
+	</PropertyGroup>
+
+	<!-- Android SDK Configuration (client will configure their own paths) -->
+	<!-- Remove machine-specific paths for portability -->
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		        <!-- Images -->
+        <MauiImage Include="Resources\Images\*" />
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+        <!-- Logo is already included via wildcard above -->
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Migrated Dependencies -->
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="QRCoder" Version="1.4.3" />
+		<PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
+		<PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.7" />
+		<PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+		<!-- Keep only logging + community toolkit; MAUI runtime comes from workload, not NuGet -->
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+	</ItemGroup>
+
+	<!-- Explicit Windows App SDK to satisfy VS clean/restore for Windows target -->
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0-windows10.0.19041.0'">
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240802000" />
+    </ItemGroup>
+
+	<!-- Splash (restore original if present) -->
+	<ItemGroup>
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+	</ItemGroup>
+
+	    <!-- Project References removed for self-contained delivery -->
+    <!-- Client can add LibFinDoc as NuGet package if needed -->
+
+	<ItemGroup>
+		<!-- MAUI automatically includes XAML files, no need for explicit includes -->
+	</ItemGroup>
+
+	<!-- Suppress NuGet warnings for legacy packages -->
+	<PropertyGroup>
+		<NoWarn>NU1701;NU1900</NoWarn>
+	</PropertyGroup>
+
+</Project> 

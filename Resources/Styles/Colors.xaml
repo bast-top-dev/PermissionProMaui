@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Primary Colors -->
+    <Color x:Key="Primary">#48788F</Color>
+    <Color x:Key="PrimaryContainer">#48788F</Color>
+    <Color x:Key="OnPrimary">#FFFFFF</Color>
+    <Color x:Key="OnPrimaryContainer">#FFFFFF</Color>
+
+    <!-- Secondary Colors -->
+    <Color x:Key="Secondary">#FF8901</Color>
+    <Color x:Key="SecondaryContainer">#FF8901</Color>
+    <Color x:Key="OnSecondary">#FFFFFF</Color>
+    <Color x:Key="OnSecondaryContainer">#FFFFFF</Color>
+
+    <!-- Surface Colors -->
+    <Color x:Key="Surface">#FFFFFF</Color>
+    <Color x:Key="SurfaceVariant">#F2F2F2</Color>
+    <Color x:Key="OnSurface">#474747</Color>
+    <Color x:Key="OnSurfaceVariant">#666666</Color>
+
+    <!-- Background Colors -->
+    <Color x:Key="Background">#F2F2F2</Color>
+    <Color x:Key="OnBackground">#474747</Color>
+
+    <!-- Error Colors -->
+    <Color x:Key="Error">#DB6363</Color>
+    <Color x:Key="OnError">#FFFFFF</Color>
+
+    <!-- Success Colors -->
+    <Color x:Key="Success">#A9D08E</Color>
+    <Color x:Key="Warning">#DB9442</Color>
+
+    <!-- Legacy Colors for Compatibility -->
+    <Color x:Key="windataPrimary">#48788F</Color>
+    <Color x:Key="windataPrimaryDark">#3A6377</Color>
+    <Color x:Key="windataAccent">#FF8901</Color>
+    <Color x:Key="windataBackground">#F2F2F2</Color>
+
+    <!-- Additional Colors for UI Components -->
+    <Color x:Key="Tertiary">#FF6B35</Color>
+    <Color x:Key="TertiaryContainer">#FF6B35</Color>
+    <Color x:Key="OnTertiary">#FFFFFF</Color>
+    <Color x:Key="OnTertiaryContainer">#FFFFFF</Color>
+
+    <Color x:Key="ErrorContainer">#FF6B6B</Color>
+    <Color x:Key="OnErrorContainer">#FFFFFF</Color>
+
+    <Color x:Key="Outline">#79747E</Color>
+    <Color x:Key="OutlineVariant">#CAC4D0</Color>
+
+    <Color x:Key="Scrim">#52000000</Color>
+    <Color x:Key="InverseSurface">#313033</Color>
+    <Color x:Key="InverseOnSurface">#F4EFF4</Color>
+    <Color x:Key="InversePrimary">#D0BCFF</Color>
+
+</ResourceDictionary> 

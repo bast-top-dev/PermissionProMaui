@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PermissionProMaui.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:PermissionProMaui.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.NavBarIsVisible="False"
+    Shell.FlyoutBackgroundColor="#ECEFF1"
+    Shell.ForegroundColor="#1B3553"
+    Shell.TitleColor="#FFFFFF">
+
+    <!-- Custom Flyout replicating original layout (translated to English) -->
+    <Shell.FlyoutContent>
+        <ScrollView>
+            <VerticalStackLayout Spacing="0" Padding="0">
+                <!-- Section: Settings -->
+                <Grid BackgroundColor="#9E9E9E" Padding="10,6">
+                    <Label Text="Settings" FontAttributes="Bold" TextColor="#2F2F2F"/>
+                </Grid>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Settings" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutNavigate" CommandParameter="SettingsPage"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Show email address" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutShowMail"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Change email address" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutChangeMail"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <!-- Section: Contact & Log -->
+                <Grid BackgroundColor="#9E9E9E" Padding="10,6" Margin="0,8,0,0">
+                    <Label Text="Contact &amp; Log" FontAttributes="Bold" TextColor="#2F2F2F"/>
+                </Grid>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Contact" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutContactProtocol"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="License" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutNavigate" CommandParameter="LicensePage"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="EBICS error logs" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutErrorLogs"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+
+                <!-- Section: More information -->
+                <Grid BackgroundColor="#9E9E9E" Padding="10,6" Margin="0,8,0,0">
+                    <Label Text="More information" FontAttributes="Bold" TextColor="#2F2F2F"/>
+                </Grid>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Imprint &amp; data protection" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutNavigate" CommandParameter="ImpressumDialog"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+                <BoxView HeightRequest="1" BackgroundColor="#BDBDBD"/>
+                <Grid BackgroundColor="#FFFFFF" Padding="14,10">
+                    <Label Text="Logout" TextColor="#2F2F2F">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlyoutLogout"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Shell.FlyoutContent>
+
+    <!-- Main Home Page -->
+    <ShellContent x:Name="HomeShellContent" Route="Home">
+        <views:HomePage />
+    </ShellContent>
+
+    <!-- No additional flyout items; navigation handled via routes and custom flyout above -->
+
+</Shell>

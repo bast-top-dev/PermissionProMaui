@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.LicensePage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid RowDefinitions="Auto,*,Auto" 
+          Padding="20">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{DynamicResource Primary}" 
+              Padding="20,10"
+              Margin="0,0,0,20">
+            
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnBackClicked" />
+                
+                <Label Grid.Column="1" 
+                       Text="License Management" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+                
+                <Label Grid.Column="2" 
+                       Text="📄" 
+                       FontSize="20" 
+                       TextColor="White" />
+            </Grid>
+        </Grid>
+
+        <!-- License Form -->
+        <VerticalStackLayout Grid.Row="1" 
+                            Spacing="20" 
+                            VerticalOptions="Center">
+            
+            <!-- License Code Entry -->
+            <Frame Margin="0,5" 
+                   Padding="15" 
+                   BackgroundColor="White" 
+                   CornerRadius="8" 
+                   BorderColor="LightGray">
+                
+                <Entry Text="{Binding LicenseCode}" 
+                       Placeholder="Enter License Code" 
+                       FontSize="16" 
+                       HorizontalOptions="Fill" />
+            </Frame>
+
+            <!-- Activate Button -->
+            <Button Text="{Binding ActivateButtonText}" 
+                    IsEnabled="{Binding IsActivateButtonEnabled}"
+                    BackgroundColor="{DynamicResource Primary}" 
+                    TextColor="White" 
+                    CornerRadius="8" 
+                    FontSize="16" 
+                    FontAttributes="Bold" 
+                    HeightRequest="50" 
+                    Clicked="OnActivateClicked" />
+
+            <!-- Current License Info -->
+            <Frame BackgroundColor="LightGray" 
+                   CornerRadius="8" 
+                   Padding="15">
+                
+                <VerticalStackLayout Spacing="10">
+                    
+                    <Label Text="Current License Status" 
+                           FontSize="16" 
+                           FontAttributes="Bold" />
+                    
+                    <Label Text="{Binding LicenseStatus}" 
+                           FontSize="14" />
+                    
+                    <Label Text="{Binding LicenseExpiry}" 
+                           FontSize="12" 
+                           TextColor="Gray" />
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+
+        <!-- Footer -->
+        <VerticalStackLayout Grid.Row="2" 
+                            Spacing="5" 
+                            Margin="0,20,0,0">
+            
+            <Label Text="Need a license? Contact support:" 
+                   FontSize="12" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" />
+            
+            <Label Text="{Binding SupportEmail}" 
+                   FontSize="12" 
+                   TextColor="{DynamicResource Primary}" 
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage> 

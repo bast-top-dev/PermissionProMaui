@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PermissionProMaui.Views.ShowMailDialog">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{DynamicResource Primary}"
+              Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="18" 
+                        TextColor="{DynamicResource OnPrimary}"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Clicked="OnBackClicked"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Margin="0,0,8,0"/>
+                <Label Grid.Column="1" Text="Emailadresse anzeigen" FontSize="20" TextColor="{DynamicResource OnPrimary}"/>
+                <Label Grid.Column="2" Text="" FontSize="18" TextColor="{DynamicResource OnPrimary}"/>
+            </Grid>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20" VerticalOptions="Center">
+                <Label Text="Ihre aktuelle Emailadresse:" 
+                       FontSize="18" 
+                       HorizontalOptions="Center"/>
+                
+                <Frame BackgroundColor="White" 
+                       Padding="20" 
+                       CornerRadius="8" 
+                       HasShadow="True">
+                    <Label x:Name="EmailLabel" 
+                           Text="loading..." 
+                           FontSize="16" 
+                           HorizontalOptions="Center"
+                           TextColor="{DynamicResource OnSurface}"/>
+                </Frame>
+                
+                <Label Text="Diese Emailadresse wird für EBICS-Benachrichtigungen verwendet." 
+                       FontSize="14" 
+                       TextColor="Gray"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+            </StackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

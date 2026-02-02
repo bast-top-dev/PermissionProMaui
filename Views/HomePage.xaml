@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PermissionProMaui.Views.HomePage">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        <!-- Topbar -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{DynamicResource Primary}"
+              Padding="8,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <!-- Hamburger (left) - custom 3-line icon for exact thickness -->
+                <Grid Grid.Column="0"
+                      WidthRequest="44"
+                      HeightRequest="44"
+                      Margin="0,0,8,0"
+                      VerticalOptions="Center"
+                      HorizontalOptions="Start">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnMenuTapped" />
+                    </Grid.GestureRecognizers>
+                    <VerticalStackLayout Spacing="5"
+                                          VerticalOptions="Center"
+                                          HorizontalOptions="Center"
+                                          WidthRequest="28">
+                        <BoxView HeightRequest="3" BackgroundColor="{DynamicResource OnPrimary}" />
+                        <BoxView HeightRequest="3" BackgroundColor="{DynamicResource OnPrimary}" />
+                        <BoxView HeightRequest="3" BackgroundColor="{DynamicResource OnPrimary}" />
+                    </VerticalStackLayout>
+                </Grid>
+                <!-- Title -->
+                <Label Grid.Column="1" 
+                       Text="windata EBICS" 
+                       FontSize="20" 
+                       FontAttributes="Bold"
+                       TextColor="{DynamicResource OnPrimary}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                <!-- Right logo -->
+                <Image Grid.Column="2" Source="windata_logo.png" HeightRequest="44" Aspect="AspectFit"/>
+            </Grid>
+        </Grid>
+
+        <!-- Section header: EBICS-Kontakte -->
+        <Grid Grid.Row="1" BackgroundColor="#335A70" Padding="8,12">
+            <Grid ColumnDefinitions="Auto,*">
+                <Label Grid.Column="0" Text="🏢" FontSize="16" TextColor="White" Margin="0,0,8,0"/>
+                <Label Grid.Column="1" Text="EBICS-Kontakte" FontSize="16" FontAttributes="Bold" TextColor="White"/>
+            </Grid>
+        </Grid>
+
+        <!-- Contacts list -->
+        <Grid Grid.Row="2">
+            <CollectionView x:Name="ContactsCollectionView"
+                            SelectionMode="Single"
+                            SelectionChanged="OnContactSelected"
+                            Margin="0"
+                            VerticalOptions="FillAndExpand">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="10,6"
+                               Padding="12"
+                               BackgroundColor="White"
+                               CornerRadius="8"
+                               HasShadow="True">
+                            <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto">
+                                <Label Grid.Row="0" Grid.Column="0"
+                                       Text="{Binding Bank.Bankname}"
+                                       FontAttributes="Bold" FontSize="16"/>
+                                <Label Grid.Row="0" Grid.Column="1"
+                                       Text="{Binding Bank.InitPhase}"
+                                       FontSize="12" TextColor="Gray"/>
+                                <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Spacing="4">
+                                    <Label Text="{Binding Contact.PartnerId}" FontSize="12" TextColor="Gray"/>
+                                    <Label Text="---" FontSize="12" TextColor="Gray"/>
+                                    <Label Text="{Binding Contact.UserId}" FontSize="12" TextColor="Gray"/>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Label x:Name="NoContentLabel"
+                   IsVisible="False"
+                   Text="No EBICS contacts available, you can now add a contact"
+                   TextColor="{DynamicResource OnSurface}"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+
+        <!-- Add Contact footer -->
+        <Grid Grid.Row="3" Padding="12">
+            <Button Text="Add Contact"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Clicked="OnAddContactClicked"/>
+        </Grid>
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.EditBankPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Edit Bank"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Header -->
+            <Frame BackgroundColor="{DynamicResource Primary}" CornerRadius="10" Padding="15">
+                <StackLayout>
+                    <Label Text="Edit Bank Information" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                    <Label Text="Modify bank details and settings" 
+                           FontSize="14" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Bank Name -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Bank Name" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Entry x:Name="BankNameEntry" 
+                           Placeholder="Enter bank name" 
+                           Text="{Binding BankName}"
+                           MaxLength="128"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Host ID -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Host ID" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Entry x:Name="HostIdEntry" 
+                           Placeholder="Enter host ID" 
+                           Text="{Binding HostId}"
+                           MaxLength="128"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Server URL -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Server URL" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Entry x:Name="UriEntry" 
+                           Placeholder="Enter server URL" 
+                           Text="{Binding Uri}"
+                           MaxLength="256"
+                           Keyboard="Url"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- EBICS Version -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="EBICS Version" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <RadioButton x:Name="Ebics2RadioButton" 
+                                Content="EBICS 2.5" 
+                                IsChecked="{Binding IsEbics25}"
+                                GroupName="EbicsVersion"/>
+                    <RadioButton x:Name="Ebics3RadioButton" 
+                                Content="EBICS 3.0" 
+                                IsChecked="{Binding IsEbics30}"
+                                GroupName="EbicsVersion"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Connection Check -->
+            <Frame x:Name="ConnectionCheckFrame" 
+                   BackgroundColor="White" 
+                   CornerRadius="8" 
+                   Padding="15" 
+                   HasShadow="True"
+                   IsVisible="{Binding ShowConnectionCheck}">
+                <StackLayout Spacing="10">
+                    <Label Text="Connection Check" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Label Text="Click to test the connection to the bank server" 
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                    <Button Text="Test Connection" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnConnectionCheckClicked"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Save Changes" 
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnSaveChangesClicked"/>
+                <Button Text="Delete Bank" 
+                        Style="{StaticResource DangerButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnDeleteBankClicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.SinglePaymentsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{DynamicResource Primary}" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnBackClicked" />
+                
+                <Label Grid.Column="1" 
+                       Text="Single Payments" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+                
+                <Button Grid.Column="2" 
+                        Text="⚙" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnSettingsClicked" />
+            </Grid>
+        </Grid>
+
+        <!-- Order Summary -->
+        <Frame Grid.Row="1" 
+               Margin="20,10,20,0" 
+               Padding="15" 
+               BackgroundColor="LightGray" 
+               CornerRadius="8">
+            
+            <VerticalStackLayout Spacing="8">
+                
+                <Label x:Name="AccountNumberLabel" 
+                       Text="Account: Loading..." 
+                       FontSize="14" 
+                       FontAttributes="Bold" />
+                
+                <Label x:Name="OrderTypeLabel" 
+                       Text="Orders: Loading..." 
+                       FontSize="14" />
+                
+                <Label x:Name="TotalAmountLabel" 
+                       Text="Total: Loading..." 
+                       FontSize="16" 
+                       FontAttributes="Bold" 
+                       TextColor="Green" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <!-- Payments List -->
+        <CollectionView Grid.Row="1" 
+                        x:Name="PaymentsCollectionView" 
+                        ItemsSource="{Binding Payments}"
+                        Margin="20,10,20,0"
+                        VerticalOptions="Fill">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" 
+                           Padding="15" 
+                           BackgroundColor="White" 
+                           CornerRadius="8" 
+                           BorderColor="LightGray">
+                        
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" 
+                              ColumnDefinitions="*,Auto">
+                            
+                            <!-- Account Holder Type -->
+                            <Label Grid.Row="0" 
+                                   Grid.Column="0"
+                                   Text="{Binding AccountHolderType}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" 
+                                   FontAttributes="Bold" />
+                            
+                            <!-- Amount -->
+                            <Label Grid.Row="0" 
+                                   Grid.Column="1"
+                                   Text="{Binding FormattedAmount}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold" 
+                                   TextColor="{Binding AmountColor}" />
+                            
+                            <!-- Account Holder Name -->
+                            <Label Grid.Row="1" 
+                                   Grid.Column="0"
+                                   Text="{Binding AccountHolderName}" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold" />
+                            
+                            <!-- Account Number -->
+                            <Label Grid.Row="2" 
+                                   Grid.Column="0"
+                                   Text="{Binding AccountNumber}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" />
+                            
+                            <!-- Requested Execution Date (only for payors) -->
+                            <Label Grid.Row="3" 
+                                   Grid.Column="0"
+                                   Text="{Binding RequestedExecutionDate}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" 
+                                   IsVisible="{Binding ShowExecutionDate}" />
+                            
+                            <!-- ESR Reference Number -->
+                            <Label Grid.Row="4" 
+                                   Grid.Column="0"
+                                   Text="{Binding EsrReferenceNumber}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" 
+                                   IsVisible="{Binding ShowEsrReference}" />
+                            
+                            <!-- Description Lines -->
+                            <VerticalStackLayout Grid.Row="5" 
+                                                Grid.Column="0"
+                                                Spacing="2" 
+                                                Margin="0,10,0,0">
+                                
+                                <Label Text="{Binding Description1}" 
+                                       FontSize="12" 
+                                       TextColor="DarkGray" 
+                                       IsVisible="{Binding HasDescription1}" />
+                                
+                                <Label Text="{Binding Description2}" 
+                                       FontSize="12" 
+                                       TextColor="DarkGray" 
+                                       IsVisible="{Binding HasDescription2}" />
+                                
+                                <Label Text="{Binding Description3}" 
+                                       FontSize="12" 
+                                       TextColor="DarkGray" 
+                                       IsVisible="{Binding HasDescription3}" />
+                                
+                                <Label Text="{Binding Description4}" 
+                                       FontSize="12" 
+                                       TextColor="DarkGray" 
+                                       IsVisible="{Binding HasDescription4}" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- No Payments Message -->
+        <VerticalStackLayout Grid.Row="1" 
+                            x:Name="NoPaymentsLayout" 
+                            IsVisible="False"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Center"
+                            Spacing="20">
+            
+            <Label Text="No Single Payments Found" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+            
+            <Label Text="There are no single payments to display for this order" 
+                   FontSize="14" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Bottom Navigation -->
+        <Grid Grid.Row="2" 
+              BackgroundColor="White" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="*,*" 
+                  ColumnSpacing="10">
+                
+                <!-- Approve Button -->
+                <Button Grid.Column="0" 
+                        Text="Approve" 
+                        BackgroundColor="Green" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnApproveClicked" />
+                
+                <!-- Reject Button -->
+                <Button Grid.Column="1" 
+                        Text="Reject" 
+                        BackgroundColor="Red" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnRejectClicked" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage> 

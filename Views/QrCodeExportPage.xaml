@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.QrCodeExportPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Header -->
+            <Frame BackgroundColor="{DynamicResource Primary}" CornerRadius="10" Padding="15">
+                <StackLayout>
+                    <Label Text="Export Contact" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                    <Label Text="Generate QR code for contact export" 
+                           FontSize="14" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Contact Information -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label x:Name="ContactNameLabel" 
+                           Text="Contact Information" 
+                           FontSize="16" 
+                           FontAttributes="Bold" 
+                           TextColor="{DynamicResource OnSurface}"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- QR Code Display -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="QR Code" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Image x:Name="QrCodeImage" 
+                           HeightRequest="300" 
+                           WidthRequest="300" 
+                           HorizontalOptions="Center"
+                           IsVisible="False"/>
+                    <Label x:Name="QrCodeStatusLabel" 
+                           Text="Click 'Generate QR Code' to create the export QR code" 
+                           FontSize="14" 
+                           TextColor="Gray"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Generate QR Code" 
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnGenerateQrCodeClicked"/>
+                <Button x:Name="ShareButton" 
+                        Text="Share" 
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnShareClicked"
+                        IsEnabled="False"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

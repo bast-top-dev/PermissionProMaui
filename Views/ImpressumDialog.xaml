@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PermissionProMaui.Views.ImpressumDialog">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{DynamicResource Primary}"
+              Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="18" 
+                        TextColor="{DynamicResource OnPrimary}"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Clicked="OnBackClicked"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Margin="0,0,8,0"/>
+                <Label Grid.Column="1" Text="Impressum &amp; Datenschutz" FontSize="20" TextColor="{DynamicResource OnPrimary}"/>
+                <Label Grid.Column="2" Text="" FontSize="18" TextColor="{DynamicResource OnPrimary}"/>
+            </Grid>
+        </Grid>
+
+        <!-- Content -->
+        <ScrollView Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20">
+                <Label Text="Impressum" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+                
+                <Frame BackgroundColor="White" 
+                       Padding="20" 
+                       CornerRadius="8" 
+                       HasShadow="True">
+                    <StackLayout Spacing="15">
+                        <Label Text="windata GmbH" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Geschäftsführer: Max Mustermann" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Adresse: Musterstraße 123, 12345 Musterstadt" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Telefon: +49 123 456789" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Email: info@windata.de" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Web: www.windata.de" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="USt-IdNr.: DE123456789" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Handelsregister: HRB 12345" 
+                               FontSize="16" 
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+                
+                <Label Text="Datenschutz" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+                
+                <Frame BackgroundColor="White" 
+                       Padding="20" 
+                       CornerRadius="8" 
+                       HasShadow="True">
+                    <StackLayout Spacing="15">
+                        <Label Text="Datenschutzerklärung" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+                        
+                        <Label Text="Ihre personenbezogenen Daten werden ausschließlich für die Bereitstellung der EBICS-Dienste verwendet und nicht an Dritte weitergegeben." 
+                               FontSize="14" 
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                        
+                        <Label Text="Weitere Informationen finden Sie in unserer vollständigen Datenschutzerklärung auf unserer Website." 
+                               FontSize="14" 
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

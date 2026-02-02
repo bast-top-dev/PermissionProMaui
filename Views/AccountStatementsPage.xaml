@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.AccountStatementsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Account Statements">
+
+    <Grid RowDefinitions="Auto,Auto,*,Auto">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{DynamicResource Primary}" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnBackClicked" />
+                
+                <Label Grid.Column="1" 
+                       Text="Account Statements" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+                
+                <Button Grid.Column="2" 
+                        Text="⚙" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnSettingsClicked" />
+            </Grid>
+        </Grid>
+
+        <!-- Tab Navigation -->
+        <Grid Grid.Row="1" 
+              BackgroundColor="White" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="*,*" 
+                  ColumnSpacing="10">
+                
+                <!-- CAMT 52 Button (Open Orders) -->
+                <Button Grid.Column="0" 
+                        x:Name="Camt52Button" 
+                        Text="Open Orders" 
+                        BackgroundColor="LightBlue" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnCamt52Clicked" />
+                
+                <!-- CAMT 53 Button (Transactions) -->
+                <Button Grid.Column="1" 
+                        x:Name="Camt53Button" 
+                        Text="Transactions" 
+                        BackgroundColor="{DynamicResource Primary}" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnCamt53Clicked" />
+            </Grid>
+        </Grid>
+
+        <!-- Statements List -->
+        <CollectionView Grid.Row="2" 
+                        x:Name="StatementsCollectionView" 
+                        ItemsSource="{Binding Statements}"
+                        Margin="20,10,20,0"
+                        VerticalOptions="Fill">
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5" 
+                           Padding="15" 
+                           BackgroundColor="White" 
+                           CornerRadius="8" 
+                           BorderColor="LightGray">
+                        
+                        <Grid RowDefinitions="Auto,Auto,Auto,Auto" 
+                              ColumnDefinitions="*,Auto">
+                            
+                            <!-- Transaction Date -->
+                            <Label Grid.Row="0" 
+                                   Grid.Column="0"
+                                   Text="{Binding TransactionDate}" 
+                                   FontSize="14" 
+                                   FontAttributes="Bold" />
+                            
+                            <!-- Amount -->
+                            <Label Grid.Row="0" 
+                                   Grid.Column="1"
+                                   Text="{Binding FormattedAmount}" 
+                                   FontSize="16" 
+                                   FontAttributes="Bold" 
+                                   TextColor="{Binding AmountColor}" />
+                            
+                            <!-- Transaction Type -->
+                            <Label Grid.Row="1" 
+                                   Grid.Column="0"
+                                   Text="{Binding TransactionType}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" />
+                            
+                            <!-- Account Information -->
+                            <Label Grid.Row="2" 
+                                   Grid.Column="0"
+                                   Text="{Binding AccountInfo}" 
+                                   FontSize="12" 
+                                   TextColor="Gray" />
+                            
+                            <!-- Description -->
+                            <Label Grid.Row="3" 
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="2"
+                                   Text="{Binding Description}" 
+                                   FontSize="12" 
+                                   TextColor="DarkGray" 
+                                   Margin="0,5,0,0" />
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- No Statements Message -->
+        <VerticalStackLayout Grid.Row="2" 
+                            x:Name="NoStatementsLayout" 
+                            IsVisible="False"
+                            VerticalOptions="Center" 
+                            HorizontalOptions="Center"
+                            Spacing="20">
+            
+            <Label x:Name="NoStatementsLabel" 
+                   Text="No Account Statements Found" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" />
+            
+            <Label x:Name="NoStatementsSubLabel" 
+                   Text="There are no statements to display for this account" 
+                   FontSize="14" 
+                   TextColor="Gray" 
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Bottom Navigation -->
+        <Grid Grid.Row="3" 
+              BackgroundColor="White" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="*,*,*" 
+                  ColumnSpacing="10">
+                
+                <!-- Refresh Button -->
+                <Button Grid.Column="0" 
+                        Text="Refresh" 
+                        BackgroundColor="LightGray" 
+                        TextColor="Black" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnRefreshClicked" />
+                
+                <!-- Export Button -->
+                <Button Grid.Column="1" 
+                        Text="Export" 
+                        BackgroundColor="Orange" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnExportClicked" />
+                
+                <!-- Filter Button -->
+                <Button Grid.Column="2" 
+                        Text="Filter" 
+                        BackgroundColor="{DynamicResource Primary}" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnFilterClicked" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage> 

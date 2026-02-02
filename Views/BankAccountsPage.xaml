@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.BankAccountsPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+        
+        <!-- Header -->
+        <Grid Grid.Row="0" 
+              BackgroundColor="{DynamicResource Primary}" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnBackClicked" />
+                
+                <Label Grid.Column="1" 
+                       Text="Bank Accounts" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="White" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center" />
+                
+                <Button Grid.Column="2" 
+                        Text="⚙" 
+                        FontSize="20" 
+                        BackgroundColor="Transparent" 
+                        TextColor="White" 
+                        Clicked="OnSettingsClicked" />
+            </Grid>
+        </Grid>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" 
+              Padding="20">
+            
+            <!-- Bank Accounts List -->
+            <CollectionView x:Name="AccountsCollectionView" 
+                           ItemsSource="{Binding Accounts}"
+                           SelectionMode="Single"
+                           SelectionChanged="OnAccountSelected">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Margin="0,5" 
+                               Padding="15" 
+                               BackgroundColor="White" 
+                               CornerRadius="8" 
+                               BorderColor="LightGray">
+                            
+                            <Grid ColumnDefinitions="*,Auto">
+                                
+                                <VerticalStackLayout Grid.Column="0" 
+                                                    Spacing="5">
+                                    
+                                    <Label Text="{Binding AccountName}" 
+                                           FontSize="16" 
+                                           FontAttributes="Bold" />
+                                    
+                                    <Label Text="{Binding Iban}" 
+                                           FontSize="14" 
+                                           TextColor="Gray" />
+                                    
+                                    <Label Text="{Binding Balance}" 
+                                           FontSize="14" 
+                                           TextColor="Green" />
+                                </VerticalStackLayout>
+                                
+                                <Label Grid.Column="1" 
+                                       Text="→" 
+                                       FontSize="20" 
+                                       TextColor="Gray" 
+                                       VerticalOptions="Center" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- No Accounts Message -->
+            <VerticalStackLayout x:Name="NoAccountsLayout" 
+                                IsVisible="False"
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"
+                                Spacing="20">
+                
+                <Label Text="No Bank Accounts Found" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       HorizontalOptions="Center" />
+                
+                <Label Text="Add your first bank account to get started" 
+                       FontSize="14" 
+                       TextColor="Gray" 
+                       HorizontalOptions="Center" />
+                
+                <Button Text="Add Bank Account" 
+                        BackgroundColor="{DynamicResource Primary}" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnAddBankAccountClicked" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Bottom Navigation -->
+        <Grid Grid.Row="2" 
+              BackgroundColor="White" 
+              Padding="20,10">
+            
+            <Grid ColumnDefinitions="*,*,*" 
+                  ColumnSpacing="10">
+                
+                <!-- Open Orders Button -->
+                <Button Grid.Column="0" 
+                        Text="Open Orders" 
+                        BackgroundColor="LightBlue" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnOpenOrdersClicked" />
+                
+                <!-- HAC Button -->
+                <Button Grid.Column="1" 
+                        Text="HAC" 
+                        BackgroundColor="Orange" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnHacClicked" />
+                
+                <!-- Account Statements Button -->
+                <Button Grid.Column="2" 
+                        Text="Account Statements" 
+                        BackgroundColor="{DynamicResource Primary}" 
+                        TextColor="White" 
+                        CornerRadius="8" 
+                        HeightRequest="40" 
+                        Clicked="OnAccountStatementsClicked" />
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage> 

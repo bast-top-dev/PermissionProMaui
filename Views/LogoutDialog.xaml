@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PermissionProMaui.Views.LogoutDialog">
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- Header -->
+        <Grid Grid.Row="0"
+              BackgroundColor="{DynamicResource Primary}"
+              Padding="12,8">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Button Grid.Column="0" 
+                        Text="←" 
+                        FontSize="18" 
+                        TextColor="{DynamicResource OnPrimary}"
+                        BackgroundColor="Transparent"
+                        BorderColor="Transparent"
+                        Clicked="OnBackClicked"
+                        WidthRequest="40"
+                        HeightRequest="40"
+                        Margin="0,0,8,0"/>
+                <Label Grid.Column="1" Text="Abmelden" FontSize="20" TextColor="{DynamicResource OnPrimary}"/>
+                <Label Grid.Column="2" Text="" FontSize="18" TextColor="{DynamicResource OnPrimary}"/>
+            </Grid>
+        </Grid>
+
+        <!-- Content -->
+        <Grid Grid.Row="1" Padding="20">
+            <StackLayout Spacing="20" VerticalOptions="Center">
+                <Label Text="Abmelden" 
+                       FontSize="24" 
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+                
+                <Frame BackgroundColor="White" 
+                       Padding="20" 
+                       CornerRadius="8" 
+                       HasShadow="True">
+                    <StackLayout Spacing="15">
+                        <Label Text="Möchten Sie sich wirklich abmelden?" 
+                               FontSize="18" 
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                        
+                        <Label Text="Alle lokalen Daten bleiben erhalten." 
+                               FontSize="14" 
+                               TextColor="Gray"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"/>
+                    </StackLayout>
+                </Frame>
+                
+                <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Center">
+                    <Button Text="Abbrechen" 
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Clicked="OnCancelClicked"
+                            WidthRequest="120"/>
+                    
+                    <Button Text="Abmelden" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnLogoutClicked"
+                            WidthRequest="120"/>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </Grid>
+
+</ContentPage>

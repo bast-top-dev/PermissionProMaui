@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="PermissionProMaui.Views.EditContactPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="20">
+            
+            <!-- Header -->
+            <Frame BackgroundColor="{DynamicResource Primary}" CornerRadius="10" Padding="15">
+                <StackLayout>
+                    <Label Text="Edit Contact Information" 
+                           FontSize="20" 
+                           FontAttributes="Bold" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                    <Label Text="Modify contact details and settings" 
+                           FontSize="14" 
+                           TextColor="{DynamicResource OnPrimary}" 
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Partner ID -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Partner ID" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Entry x:Name="PartnerIdEntry" 
+                           Placeholder="Enter partner ID" 
+                           Text="{Binding PartnerId}"
+                           MaxLength="128"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- User ID -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="User ID" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Entry x:Name="UserIdEntry" 
+                           Placeholder="Enter user ID" 
+                           Text="{Binding UserId}"
+                           MaxLength="128"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Bank Keys Section -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Bank Keys" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Label Text="Download bank keys to complete initialization" 
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                    <Button Text="Get Bank Keys" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnGetBankKeysClicked"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Initialization Letters Section -->
+            <Frame BackgroundColor="White" CornerRadius="8" Padding="15" HasShadow="True">
+                <StackLayout Spacing="10">
+                    <Label Text="Initialization Letters" FontSize="16" FontAttributes="Bold" TextColor="{DynamicResource OnSurface}"/>
+                    <Label Text="Send initialization letters to complete setup" 
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                    <Button Text="Send Letters" 
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Clicked="OnSendLettersClicked"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Action Buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Save Changes" 
+                        Style="{StaticResource PrimaryButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnSaveChangesClicked"/>
+                <Button Text="Cancel" 
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="OnCancelClicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
